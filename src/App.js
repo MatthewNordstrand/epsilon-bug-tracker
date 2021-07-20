@@ -1,19 +1,15 @@
 import './App.css';
 import TitleBar from './components/TitleBar';
-import SideNav from './components/SideNav';
+import SideNav from './components/SideNav/SideNav';
 
 function App() {
     return (
         <div className="App">
             <TitleBar />
+            <SideNav />
             <div className="container">
                 <div className="row">
-                    <div className="col-2">
-                        <SideNav />
-                    </div>
-                    <div className="col">
-
-                    </div>
+                    
                 </div>
             </div>
         </div>
