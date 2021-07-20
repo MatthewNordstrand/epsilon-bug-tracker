@@ -1,7 +1,8 @@
+import './App.css';
 import TitleBar from './components/TitleBar';
 import SideNav from './components/SideNav/SideNav';
-import './App.css';
 import LoginBar from './components/LoginBar';
+import IssuesTable from './components/Issues/IssuesTable';
 
 function App() {
     return (
@@ -9,11 +10,7 @@ function App() {
             <TitleBar />
             <SideNav />
             <LoginBar />
-            <div className="container">
-                <div className="row mt-5">
-                    
-                </div>
-            </div>
+            <IssuesTable />
         </div>
     );
 }

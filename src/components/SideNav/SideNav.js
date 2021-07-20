@@ -12,7 +12,7 @@ export default class SideNav extends Component {
                 <Menu>
                     <a id="dashboard" className="btn btn-primary mb-2" href="#"><FontAwesomeIcon icon={faClipboardList} /> Dashboard</a>
                     <a id="dashboard" className="btn btn-primary mb-2" href="#"><FontAwesomeIcon icon={faBug} /> Issues</a>
-                    <a id="dashboard" className="btn btn-primary mb-5" href="#"><FontAwesomeIcon icon={faChartPie} /> Reports</a>
+                    <a id="dashboard" className="btn btn-primary mb-2" href="#"><FontAwesomeIcon icon={faChartPie} /> Reports</a>
                 </Menu>
             </div>
         );

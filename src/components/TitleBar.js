@@ -9,7 +9,6 @@ export default class TitleBar extends Component {
             <Navbar dark color="primary">
                 <div className="container justify-content-center">
                     <NavbarBrand>Epsilon Bug Tracker</NavbarBrand>
-                    
                 </div>
             </Navbar>
         );
