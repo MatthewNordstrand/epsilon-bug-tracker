@@ -9,7 +9,7 @@ export default class IssuesCard extends Component {
                 <div className="row">
                     <div className="col">
                         <Card>
-                            <CardBody className="pt-0">
+                            <CardBody className="pt-0 pb-0">
                                 <CardTitle tag="h3" className="text-center">Issues</CardTitle>
                                 <IssuesTable />
                             </CardBody>
