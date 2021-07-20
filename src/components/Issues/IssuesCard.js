@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Card, CardBody, CardTitle } from 'reactstrap';
+import IssuesTable from './IssuesTable';
 
 export default class IssuesCard extends Component {
     render() {
@@ -10,7 +11,7 @@ export default class IssuesCard extends Component {
                         <Card>
                             <CardBody className="pt-0">
                                 <CardTitle tag="h3" className="text-center">Issues</CardTitle>
-                                
+                                <IssuesTable />
                             </CardBody>
                         </Card>
                     </div>
