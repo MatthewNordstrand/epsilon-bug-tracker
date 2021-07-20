@@ -2,7 +2,7 @@ import './App.css';
 import TitleBar from './components/TitleBar';
 import SideNav from './components/SideNav/SideNav';
 import LoginBar from './components/LoginBar';
-import IssuesTable from './components/Issues/IssuesTable';
+import IssuesCard from './components/Issues/IssuesCard';
 
 function App() {
     return (
@@ -10,7 +10,7 @@ function App() {
             <TitleBar />
             <SideNav />
             <LoginBar />
-            <IssuesTable />
+            <IssuesCard />
         </div>
     );
 }
