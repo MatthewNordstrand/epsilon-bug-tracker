@@ -7,9 +7,9 @@ export default class TitleBar extends Component {
     render() {
         return (
             <Navbar dark color="primary">
-                <div className="container">
-                    <NavbarBrand href="/">Epsilon Bug Tracker</NavbarBrand>
-                    <a className="btn btn-success btn-sm" href="#"><FontAwesomeIcon icon={faSignInAlt}/> Login</a>
+                <div className="container justify-content-center">
+                    <NavbarBrand>Epsilon Bug Tracker</NavbarBrand>
+                    
                 </div>
             </Navbar>
         );
