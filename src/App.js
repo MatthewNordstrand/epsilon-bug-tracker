@@ -7,8 +7,8 @@ import './App.css';
 function App() {
     return (
         <div className="App">
-            <TitleBar />
             <SideNav />
+            <TitleBar />
             <LoginBar />
             <IssuesCard />
         </div>
