@@ -8,7 +8,7 @@ const LogoutButton = () => {
     const { logout } = useAuth0();
 
     return (
-        <Button onClick={() => logout()}>
+        <Button onClick={() => logout()} color="info">
             <FontAwesomeIcon icon={faSignOutAlt} /> Log Out
         </Button>
     )

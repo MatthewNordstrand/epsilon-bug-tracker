@@ -8,8 +8,8 @@ const LoginButton = () => {
     const { loginWithRedirect } = useAuth0();
 
     return (
-        <Button onClick={() => loginWithRedirect()}>
-            <FontAwesomeIcon icon={faSignInAlt} />Log In
+        <Button onClick={() => loginWithRedirect()} color="info">
+            <FontAwesomeIcon icon={faSignInAlt} /> Log In
         </Button>
     )
 }
