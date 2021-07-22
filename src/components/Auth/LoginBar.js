@@ -1,7 +1,4 @@
-import { Button, Modal, ModalBody, ModalHeader } from 'reactstrap';
 import React from 'react';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faSignInAlt } from '@fortawesome/free-solid-svg-icons';
 import LoginButton from './LoginButton';
 import LogoutButton from './LogoutButton';
 import { useAuth0 } from '@auth0/auth0-react';
