@@ -5,3 +5,7 @@
 .st-progress {
     background-color: #7CFC00;
 }
+
+.no-resize {
+    resize: none;
+}
