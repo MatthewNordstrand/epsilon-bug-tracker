@@ -59,9 +59,9 @@ export default class IssuesCard extends Component {
                                 </div>
                             </div>
                             <div className="row">
-                                <div className="col">
-                                    <Button className="float-right m-1" color="success" size="lg">Submit</Button>
-                                    <Button className="float-right m-1" color="danger" size="lg" onClick={() => this.openIssueModalToggle()}>Cancel</Button>
+                                <div className="col text-right">
+                                    <Button className="m-1" color="danger" size="lg" onClick={() => this.openIssueModalToggle()}>Cancel</Button>
+                                    <Button className="m-1" color="success" size="lg">Submit</Button>
                                 </div>
                             </div>
                         </Form>
