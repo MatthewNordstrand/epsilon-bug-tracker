@@ -2,6 +2,10 @@ import React, { Component } from 'react';
 import { Table } from 'reactstrap';
 
 export default class IssuesTable extends Component {
+    constructor(props) {
+        super(props);
+    }
+
     render() {
         return (
             <Table responsive striped hover bordered>
