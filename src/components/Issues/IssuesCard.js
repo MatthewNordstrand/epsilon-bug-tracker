@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
-import { Card, CardBody, CardTitle, Modal, ModalHeader, ModalBody, Form, Label, Input, Button } from 'reactstrap';
+import { Card, CardBody, CardTitle } from 'reactstrap';
 import IssuesButtonRow from './IssuesButtonRow';
 import IssuesTable from './IssuesTable';
+import OpenIssueModal from './OpenIssueModal';
 
 export default class IssuesCard extends Component {
     constructor(props) {
@@ -22,7 +23,7 @@ export default class IssuesCard extends Component {
                             <Card>
                                 <CardBody className="pt-0 pb-0">
                                     <CardTitle tag="h3" className="text-center">Issues</CardTitle>
-                                    <IssuesButtonRow openIssueModalToggle={() => this.openIssueModalToggle()} />
+                                    <IssuesButtonRow openIssueModalToggle={this.openIssueModalToggle} />
                                     <IssuesTable />
                                 </CardBody>
                             </Card>
@@ -30,43 +31,7 @@ export default class IssuesCard extends Component {
                     </div>
                 </div>
 
-                <Modal
-                isOpen={this.state.openIssueModal}
-                toggle={() => this.openIssueModalToggle()}
-                className="open-issue-modal"
-                size="xl">
-                    <ModalHeader>Open Issue</ModalHeader>
-                    <ModalBody>
-                        <Form onSubmit={(e) => e.preventDefault()}>
-                            <div className="row">
-                                <div className="col-9">
-                                    <Label for="openIssueTitle">Issue Name</Label>
-                                    <Input type="text" name="openIssueTitle" id="openIssueTitle" />
-                                </div>
-                                <div className="col-3">
-                                    <Label for="openIssuePriority">Priority</Label>
-                                    <select className="custom-select" name="openIssuePriority" id="openIssuePriority">
-                                        <option selected value="priorityLow">Low</option>
-                                        <option value="priorityMedium">Medium</option>
-                                        <option value="priorityHigh">High</option>
-                                    </select>
-                                </div>
-                            </div>
-                            <div className="row">
-                                <div className="col">
-                                    <Label for="openIssueDescription">Description</Label>
-                                    <textarea className="form-control no-resize" name="openIssueDescription" id="openIssueDescription" rows="15"></textarea>
-                                </div>
-                            </div>
-                            <div className="row">
-                                <div className="col text-right">
-                                    <Button className="m-1" color="danger" size="lg" onClick={() => this.openIssueModalToggle()}>Cancel</Button>
-                                    <Button className="m-1" color="success" size="lg" onClick={() => this.addIssue()}>Submit</Button>
-                                </div>
-                            </div>
-                        </Form>
-                    </ModalBody>
-                </Modal>
+                <OpenIssueModal openIssueModal={this.state.openIssueModal} openIssueModalToggle={this.openIssueModalToggle} />
             </>
         );
     }
