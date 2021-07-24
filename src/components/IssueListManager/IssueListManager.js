@@ -20,7 +20,7 @@ export default class IssueListManager extends Component {
             <>
                 <TitleBar />
                 <LoginBar />
-                <IssuesCard issueList={this.state.issueList} addIssue={this.state.addIssue} />
+                <IssuesCard issueList={this.state.issueList} addIssue={this.addIssue} />
             </>
         );
     }

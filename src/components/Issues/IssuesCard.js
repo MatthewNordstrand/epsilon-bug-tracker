@@ -13,6 +13,10 @@ export default class IssuesCard extends Component {
 
     openIssueModalToggle = () => this.setState({ openIssueModal: !this.state.openIssueModal });
 
+    addIssue() {
+        
+    }
+
     render() {
         return (
             <>
