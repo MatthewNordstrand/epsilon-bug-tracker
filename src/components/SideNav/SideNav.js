@@ -14,11 +14,15 @@ export default function SideNav(props) {
     return (
         <Drawer anchor="left" open={props.open} onClose={props.toggleDrawer}>
             <List className={classes.list}>
-                {['Inbox', 'Starred', 'Send email', 'Drafts'].map((text, index) => (
-                    <ListItem button key={text}>
-                        <ListItemText primary={text} />
-                    </ListItem>
-                ))}
+                <ListItem button>
+                    <ListItemText>Dashboard</ListItemText>
+                </ListItem>
+                <ListItem button selected>
+                    <ListItemText>Issues</ListItemText>
+                </ListItem>
+                <ListItem button>
+                    <ListItemText>Stats</ListItemText>
+                </ListItem>
             </List>
         </Drawer>
     );

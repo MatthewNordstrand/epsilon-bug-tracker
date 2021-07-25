@@ -26,6 +26,9 @@ export default class TitleBar extends Component {
                         <Typography variant="h6" color="inherit">
                             Epsilon Bug Tracker
                         </Typography>
+                        <Typography variant="subtitle2" color="inherit">
+                            Issues
+                        </Typography>
                     </Toolbar>
                 </AppBar>
                 <SideNav open={this.state.drawerOpen} toggleDrawer={this.toggleDrawer(false)} />
