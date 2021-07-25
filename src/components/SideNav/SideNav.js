@@ -1,19 +1,25 @@
-import React, { Component } from 'react';
-import { slide as Menu } from 'react-burger-menu';
-import './burger-menu.css';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faClipboardList, faBug, faChartPie } from '@fortawesome/free-solid-svg-icons';
+import React from 'react';
+import { Drawer, List, ListItem, ListItemText } from '@material-ui/core';
+import { makeStyles } from '@material-ui/styles';
 
-export default class SideNav extends Component {
-    render() {
-        return (
-            <div>
-                <Menu>
-                    <a id="dashboard" className="btn btn-primary mb-2" href="#"><FontAwesomeIcon icon={faClipboardList} /> Dashboard</a>
-                    <a id="dashboard" className="btn btn-primary mb-2" href="#"><FontAwesomeIcon icon={faBug} /> Issues</a>
-                    <a id="dashboard" className="btn btn-primary mb-2" href="#"><FontAwesomeIcon icon={faChartPie} /> Reports</a>
-                </Menu>
-            </div>
-        );
+const useStyles = makeStyles({
+    list: {
+        width: 250,
     }
+});
+
+export default function SideNav(props) {
+    const classes = useStyles();
+
+    return (
+        <Drawer anchor="left" open={props.open} onClose={props.toggleDrawer}>
+            <List className={classes.list}>
+                {['Inbox', 'Starred', 'Send email', 'Drafts'].map((text, index) => (
+                    <ListItem button key={text}>
+                        <ListItemText primary={text} />
+                    </ListItem>
+                ))}
+            </List>
+        </Drawer>
+    );
 }
