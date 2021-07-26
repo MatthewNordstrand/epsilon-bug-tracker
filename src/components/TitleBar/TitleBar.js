@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { AppBar, Button, IconButton, Toolbar, Typography, List, ListItem, ListItemText, Drawer } from '@material-ui/core';
+import { AppBar, IconButton, Toolbar, Typography } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core';
 import MenuIcon from '@material-ui/icons/Menu';
 import SideNav from '../SideNav/SideNav';
@@ -29,7 +29,9 @@ export default function TitleBar() {
         {
             return (
                 <div>
-                    Loading...
+                    <Typography variant="caption">
+                        Loading...
+                    </Typography>
                 </div>
             );
         }
@@ -37,7 +39,9 @@ export default function TitleBar() {
         if (!isAuthenticated) {
             return (
                 <div>
-                    Guest
+                    <Typography variant="caption">
+                        Guest
+                    </Typography>
                     <LoginButton />
                 </div>
             );
@@ -45,7 +49,9 @@ export default function TitleBar() {
 
         return (
             <div>
-                {user.name}
+                <Typography variant="caption">
+                    {user.name}
+                </Typography>
                 <LogoutButton />
             </div>
         );
@@ -58,10 +64,10 @@ export default function TitleBar() {
                     <IconButton edge="start" color="inherit" aria-label="menu" onClick={toggleDrawer}>
                         <MenuIcon />
                     </IconButton>
-                    <Typography variant="h6" color="inherit">
+                    <Typography variant="h6">
                         Epsilon Bug Tracker
                     </Typography>
-                    <Typography className={classes.title} variant="subtitle2" color="inherit">
+                    <Typography className={classes.title} variant="caption">
                         Issues
                     </Typography>
                     {getLoginStatus()}
