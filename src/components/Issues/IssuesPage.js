@@ -21,7 +21,7 @@ export default function IssuesPage() {
                 <Grid item xs={12}>
                     <Paper className={classes.paper}>
                         <Typography className={classes.titleHeading} variant="h3">Issues</Typography>
-                        <Button variant="contained" color="secondary" size="large">Open Issue</Button>
+                        <Button variant="contained" color="secondary" size="small">Open Issue</Button>
                     </Paper>
                 </Grid>
             </Grid>
