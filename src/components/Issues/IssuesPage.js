@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { makeStyles, Grid, Paper, Typography, Button } from '@material-ui/core';
 import IssuesGrid from './IssuesGrid';
 
