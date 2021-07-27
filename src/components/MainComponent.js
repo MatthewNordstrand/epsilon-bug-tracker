@@ -28,7 +28,8 @@ export default class MainComponent extends Component {
                     assignee: '',
                     dateResolved: ''
                 },
-                {id: 3,
+                {
+                    id: 3,
                     issueName: 'This is cool',
                     priority: 'HIGH',
                     status: 'In Progress',
@@ -37,7 +38,8 @@ export default class MainComponent extends Component {
                     assignee: 'Matt Nordstrand',
                     dateResolved: ''
                 },
-                {id: 4,
+                {
+                    id: 4,
                     issueName: 'Test Issue',
                     priority: 'HIGH',
                     status: 'In Progress',
