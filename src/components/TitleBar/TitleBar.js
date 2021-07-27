@@ -6,12 +6,17 @@ import SideNav from '../SideNav/SideNav';
 import LoginButton from './LoginButton';
 import LogoutButton from './LogoutButton';
 import { useAuth0 } from '@auth0/auth0-react';
+import { Link } from 'react-router-dom';
 
 const useStyles = makeStyles((theme) => ({
     title: {
         marginLeft: theme.spacing(1),
         flexGrow: 1,
     },
+    link: {
+        color: "inherit",
+        textDecoration: "none",
+    }
 }));
 
 export default function TitleBar(props) {
@@ -64,9 +69,11 @@ export default function TitleBar(props) {
                     <IconButton edge="start" color="inherit" aria-label="menu" onClick={toggleDrawer}>
                         <MenuIcon />
                     </IconButton>
-                    <Typography variant="h6">
-                        Epsilon Bug Tracker
-                    </Typography>
+                    <Link className={classes.link} to="./dashboard">
+                        <Typography variant="h6">
+                            Epsilon Bug Tracker
+                        </Typography>
+                    </Link>
                     <Typography className={classes.title} variant="caption">
                         {props.title}
                     </Typography>
