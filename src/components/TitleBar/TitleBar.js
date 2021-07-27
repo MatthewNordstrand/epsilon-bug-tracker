@@ -14,7 +14,7 @@ const useStyles = makeStyles((theme) => ({
     },
 }));
 
-export default function TitleBar() {
+export default function TitleBar(props) {
     const classes = useStyles();
     const { user, isAuthenticated, isLoading } = useAuth0();
 

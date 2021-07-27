@@ -13,7 +13,7 @@ const useStyles = makeStyles((theme) => ({
     }
 }));
 
-export default function IssuesPage() {
+export default function IssuesPage(props) {
     const classes = useStyles();
 
     return (
@@ -23,7 +23,7 @@ export default function IssuesPage() {
                     <Paper className={classes.paper}>
                         <Typography className={classes.titleHeading} variant="h3">Issues</Typography>
                         <Button variant="contained" color="secondary" size="small">Open Issue</Button>
-                        <IssuesGrid />
+                        <IssuesGrid issues={props.issues} />
                     </Paper>
                 </Grid>
             </Grid>

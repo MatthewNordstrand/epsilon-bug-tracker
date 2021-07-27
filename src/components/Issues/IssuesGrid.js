@@ -25,13 +25,6 @@ export default function IssuesGrid(props) {
         alert(`You clicked on issue ${id}: ${issueName}, which was opened by ${openedBy}`);
     }
 
-    const rows = [
-        {id: 1, issueName: 'Test Issue', priority: 'HIGH', status: 'In Progress', openedOn: '2021-07-20', openedBy: 'Matt Nordstrand', assignee: 'Matt Nordstrand', dateResolved: ''},
-        {id: 2, issueName: 'Ooga Booga', priority: 'LOW', status: 'New', openedOn: '2021-07-20', openedBy: 'Matt Nordstrand', assignee: '', dateResolved: ''},
-        {id: 3, issueName: 'This is cool', priority: 'HIGH', status: 'In Progress', openedOn: '2021-07-20', openedBy: 'Matt Nordstrand', assignee: 'Matt Nordstrand', dateResolved: ''},
-        {id: 4, issueName: 'Test Issue', priority: 'HIGH', status: 'In Progress', openedOn: '2021-07-20', openedBy: 'Matt Nordstrand', assignee: 'Matt Nordstrand', dateResolved: ''},
-    ];
-
     return (
         <TableContainer className={classes.tableContainer} component={Paper}>
             <Table className={classes.table}>
@@ -48,7 +41,7 @@ export default function IssuesGrid(props) {
                     </TableRow>
                 </TableHead>
                 <TableBody>
-                    {rows.map((row) => (
+                    {props.issues.map((row) => (
                         <TableRow onClick={() => testFunction(row)} hover key={row.id}>
                             <TableCell align="right" component="th" scope="row">{row.id}</TableCell>
                             <TableCell>{row.issueName}</TableCell>
