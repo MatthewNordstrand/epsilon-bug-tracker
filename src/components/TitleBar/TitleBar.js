@@ -68,7 +68,7 @@ export default function TitleBar(props) {
                         Epsilon Bug Tracker
                     </Typography>
                     <Typography className={classes.title} variant="caption">
-                        Issues
+                        {props.title}
                     </Typography>
                     {getLoginStatus()}
                 </Toolbar>
