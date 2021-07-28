@@ -67,7 +67,7 @@ class MainComponent extends Component {
             <div>
                 <TitleBar title={routeName} />
                 <Switch>
-                    <Route path="/dashboard">
+                    <Route exact path="/">
                         <DashboardPage />
                     </Route>
                     <Route path="/issues">
@@ -76,7 +76,7 @@ class MainComponent extends Component {
                     <Route path="/openissue">
                         <OpenIssues />
                     </Route>
-                    <Redirect to="./dashboard" />
+                    <Redirect to="./" />
                 </Switch>
             </div>
         );

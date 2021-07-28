@@ -1,6 +1,6 @@
 const Routes = [
     {
-        path: './dashboard',
+        path: './',
         sidebarName: 'Dashboard',
         showInNav: true,
     },

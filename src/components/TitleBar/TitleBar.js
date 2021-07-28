@@ -69,7 +69,7 @@ export default function TitleBar(props) {
                     <IconButton edge="start" color="inherit" aria-label="menu" onClick={toggleDrawer}>
                         <MenuIcon />
                     </IconButton>
-                    <Link className={classes.link} to="./dashboard">
+                    <Link className={classes.link} to="./">
                         <Typography variant="h6">
                             Epsilon Bug Tracker
                         </Typography>
