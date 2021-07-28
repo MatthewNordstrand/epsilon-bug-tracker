@@ -1,6 +1,7 @@
 import React from 'react';
 import { makeStyles, Grid, Paper, Typography, Button } from '@material-ui/core';
 import IssuesGrid from './IssuesGrid';
+import { Link } from 'react-router-dom';
 
 const useStyles = makeStyles((theme) => ({
     paper: {
@@ -22,7 +23,9 @@ export default function IssuesPage(props) {
                 <Grid item xs={12}>
                     <Paper className={classes.paper}>
                         <Typography className={classes.titleHeading} variant="h3">Issues</Typography>
-                        <Button variant="contained" color="secondary" size="small">Open Issue</Button>
+                        <Link to="/openissue">
+                            <Button variant="contained" color="secondary" size="small">Open Issue</Button>
+                        </Link>
                         <IssuesGrid issues={props.issues} />
                     </Paper>
                 </Grid>

@@ -25,6 +25,8 @@ function SideNav(props) {
         <Drawer anchor="left" open={props.open} onClose={props.toggleDrawer} onClick={props.toggleDrawer}>
             <MenuList className={classes.list}>
                 {Routes.map((prop, key) => {
+                    if (!prop.showInNav) return;
+
                     return (
                         <NavLink to={prop.path} style={{ textDecoration: "none", color: "inherit" }}>
                             <MenuItem selected={activeRoute(prop.path)}>

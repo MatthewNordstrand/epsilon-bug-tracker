@@ -1,14 +1,15 @@
 import React, { Component } from 'react';
 import IssuesPage from './Issues/IssuesPage';
 import TitleBar from './TitleBar/TitleBar';
-import { Switch, Route, Redirect } from 'react-router-dom';
+import { Switch, Route, Redirect, withRouter } from 'react-router-dom';
 import DashboardPage from './Dashboard/DashboardPage';
+import Routes from '../shared/Routes';
+import OpenIssues from './OpenIssues/OpenIssuesPage';
 
-export default class MainComponent extends Component {
+class MainComponent extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            pageTitle: "Issues",
             issueData: [
                 {
                     id: 1,
@@ -55,9 +56,16 @@ export default class MainComponent extends Component {
     }
 
     render() {
+        const curPath = `.${this.props.location.pathname}`;
+        const route = Routes.filter(route => route.path === curPath)[0];
+
+        const routeName = route ? route.sidebarName : "Undefined";
+
+        document.title = `Epsilon Bug Tracker - ${routeName}`;
+
         return (
             <div>
-                <TitleBar title={this.state.pageTitle} />
+                <TitleBar title={routeName} />
                 <Switch>
                     <Route path="/dashboard">
                         <DashboardPage />
@@ -65,9 +73,14 @@ export default class MainComponent extends Component {
                     <Route path="/issues">
                         <IssuesPage issues={this.state.issueData} />
                     </Route>
+                    <Route path="/openissue">
+                        <OpenIssues />
+                    </Route>
                     <Redirect to="./dashboard" />
                 </Switch>
             </div>
         );
     }
 }
+
+export default withRouter(MainComponent);
