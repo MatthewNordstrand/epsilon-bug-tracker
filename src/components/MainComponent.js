@@ -70,10 +70,10 @@ class MainComponent extends Component {
                     <Route exact path="/">
                         <DashboardPage />
                     </Route>
-                    <Route path="/issues">
+                    <Route exact path="/issues">
                         <IssuesPage issues={this.state.issueData} />
                     </Route>
-                    <Route path="/openissue">
+                    <Route exact path="/openissue">
                         <OpenIssues />
                     </Route>
                     <Redirect to="./" />
