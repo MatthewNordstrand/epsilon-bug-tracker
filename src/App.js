@@ -9,9 +9,11 @@ const theme = createTheme({
         type: "dark",
         primary: {
             main: "#000000",
-        }
-        
-    }
+        },
+        detail: {
+            main: "#00FFFF",
+        },
+    },
 });
 
 class App extends Component {
