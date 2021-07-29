@@ -15,6 +15,9 @@ const useStyles = makeStyles((theme) => ({
     table: {
         width: '100%',
     },
+    headRow: {
+        backgroundColor: theme.palette.primary.main,
+    },
 }));
 
 export default function IssuesGrid(props) {
@@ -28,7 +31,7 @@ export default function IssuesGrid(props) {
         <TableContainer className={classes.tableContainer} component={Paper}>
             <Table className={classes.table}>
                 <TableHead>
-                    <TableRow>
+                    <TableRow className={classes.headRow}>
                         <TableCell align="right">ID</TableCell>
                         <TableCell>Issue</TableCell>
                         <TableCell>Priority</TableCell>
