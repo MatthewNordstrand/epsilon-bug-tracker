@@ -24,13 +24,11 @@ function SideNav(props) {
     return (
         <Drawer anchor="left" open={props.open} onClose={props.toggleDrawer} onClick={props.toggleDrawer}>
             <MenuList className={classes.list}>
-                {Routes.map((prop, key) => {
-                    if (!prop.showInNav) return null;
-
+                {Routes.filter(route => route.showInNav).map((route, key) => {
                     return (
-                        <NavLink key={key} to={prop.path} style={{ textDecoration: "none", color: "inherit" }}>
-                            <MenuItem selected={activeRoute(prop.path)}>
-                                <ListItemText primary={prop.sidebarName} />
+                        <NavLink key={key} to={route.path} style={{ textDecoration: "none", color: "inherit" }}>
+                            <MenuItem selected={activeRoute(route.path)}>
+                                <ListItemText primary={route.sidebarName} />
                             </MenuItem>
                         </NavLink>
                     );
