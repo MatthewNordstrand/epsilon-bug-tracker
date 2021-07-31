@@ -1,21 +1,21 @@
 const Routes = [
     {
-        path: './',
+        path: '/',
         sidebarName: 'Dashboard',
         showInNav: true,
     },
     {
-        path: './issues',
+        path: '/issues',
         sidebarName: 'Issues',
         showInNav: true,
     },
     {
-        path: './stats',
+        path: '/stats',
         sidebarName: 'Stats',
         showInNav: true,
     },
     {
-        path: './openissue',
+        path: '/openissue',
         sidebarName: 'Open Issue',
         showInNav: false,
     },

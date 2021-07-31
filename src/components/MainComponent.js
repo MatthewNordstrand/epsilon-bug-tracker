@@ -56,7 +56,7 @@ class MainComponent extends Component {
     }
 
     render() {
-        const curPath = `.${this.props.location.pathname}`;
+        const curPath = this.props.location.pathname;
         const route = Routes.filter(route => route.path === curPath)[0];
 
         const routeName = route ? route.sidebarName : "Undefined";
@@ -76,7 +76,7 @@ class MainComponent extends Component {
                     <Route exact path="/openissue">
                         <OpenIssues />
                     </Route>
-                    <Redirect to="./" />
+                    <Redirect to="/" />
                 </Switch>
             </div>
         );

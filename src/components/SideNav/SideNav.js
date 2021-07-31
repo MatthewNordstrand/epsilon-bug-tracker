@@ -18,7 +18,7 @@ function SideNav(props) {
     const classes = useStyles();
 
     const activeRoute = (routeName) => {
-        return props.location.pathname === routeName.slice(1);
+        return props.location.pathname === routeName;
     }
 
     return (
