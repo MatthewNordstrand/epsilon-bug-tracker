@@ -27,25 +27,26 @@ export default function OpenIssues() {
                     <Paper className={classes.paper}>
                         <Typography className={classes.titleHeading} variant="h3">Open Issue</Typography>
                         <Grid container spacing={3}>
-                            <Grid item xs={3} /> {/*Messing aroung with spacing here. Change this.*/}
-                            <Grid item xs={12} md={4}>
+                            <Grid item lg={3} /> {/*Spacing the obejct to center it*/}
+                            <Grid item xs={12} sm={9} lg={4}>
                                 <TextField
                                     id="issueName"
                                     name="issueName"
                                     label="Issue Name"
+                                    variant="outlined"
                                     fullWidth
                                     value={issueName}
                                     onChange={(e) => setIssueName(e.target.value)}
                                 />
                             </Grid>
-                            <Grid item xs={12} md={2}>
+                            <Grid item xs={12} sm={2}>
                                 <InputLabel id="priority-label">Priority</InputLabel>
                                 <Select
                                     labelId="priority-label"
                                     id="priority"
+                                    fullWidth
                                     value={priority}
                                     onChange={(e) => setPriority(e.target.value)}
-                                    fullWidth
                                 >
                                     <MenuItem value={"priorityLow"}>Low</MenuItem>
                                     <MenuItem value={"priorityMed"}>Medium</MenuItem>
