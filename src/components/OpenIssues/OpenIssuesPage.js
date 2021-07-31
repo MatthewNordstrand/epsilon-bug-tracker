@@ -11,6 +11,7 @@ const useStyles = makeStyles((theme) => ({
     },
     titleHeading: {
         textAlign: "center",
+        marginBottom: theme.spacing(2),
     }
 }));
 
