@@ -16,6 +16,9 @@ const useStyles = makeStyles((theme) => ({
     textField: {
         minHeight: "500px",
     },
+    error: {
+        color: "red",
+    },
 }));
 
 export default function OpenIssues() {
@@ -64,6 +67,7 @@ export default function OpenIssues() {
                                         value={issueName}
                                         onChange={e => changeIssueName(e)}
                                     />
+                                    <Typography className={classes.error}>Issues Name is required.</Typography>
                                 </Grid>
                                 <Grid item xs={12} sm={2}>
                                     <InputLabel id="priority-label">Priority</InputLabel>
@@ -92,6 +96,7 @@ export default function OpenIssues() {
                                         value={description}
                                         onChange={e => changeDescription(e)}
                                     />
+                                    <Typography className={classes.error}>Description is required.</Typography>
                                 </Grid>
                             </Grid>
                             <Grid container spacing={2} direction="column" alignItems="center">
