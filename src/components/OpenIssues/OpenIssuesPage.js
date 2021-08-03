@@ -1,3 +1,4 @@
+// @ts-nocheck
 import React, { useState } from 'react';
 import { makeStyles, Grid, Paper, Typography, TextField, Select, MenuItem, InputLabel, Button } from '@material-ui/core';
 
@@ -24,29 +25,75 @@ const useStyles = makeStyles((theme) => ({
 export default function OpenIssues() {
     const classes = useStyles();
 
-    const [issueName, setIssueName] = useState("");
-    const [priority, setPriority] = useState("priorityLow");
-    const [description, setDescription] = useState("");
+    const [formValues, setFormValues] = useState({
+        issueName: "",
+        priority: "priorityLow",
+        description: "",
+    });
+
+    const [touched, setTouched] = useState({
+        issueName: false,
+        description: false,
+    });
 
     const handleSubmit = e => {
         e.preventDefault();
-        alert(`Submitted: ${issueName} Priority: ${priority} Description: ${description}`);
+        
+        //Enable all fields for validation.
+        const newTouched = {};
+        Object.keys(touched).forEach(function(key) {
+            newTouched[key] = true;
+            setTouched(newTouched);
+        });
+
+        //Check to see if any errors are present before submitting.
+        var foundErrors = false;
+        const errors = validate(true);
+        Object.keys(errors).forEach(function(key) {
+            if (errors[key] != "") {
+                foundErrors = true;
+            }
+        });
+
+        if (foundErrors) return; //We found errors, so we won't submit the form.
+
+        //Successful code down here.
     }
 
-    const changeIssueName = e => {
-        const newName = e.target.value;
-        setIssueName(newName);
+    const handleInputChange = e => {
+        const target = e.target;
+        const name = target.name;
+        const value = target.type === "checkbox" ? target.checked : target.value;
+
+        setFormValues({...formValues, [name]: value});
     }
 
-    const changePriority = e => {
-        const newPriority = e.target.value;
-        setPriority(newPriority);
+    const handleBlur = field => {
+        setTouched({...touched, [field]: true});
     }
 
-    const changeDescription = e => {
-        const newDescription = e.target.value;
-        setDescription(newDescription);
+    const validate = force => {
+        const errors = {
+            issueName: "",
+            description: "",
+        }
+
+        if (touched.issueName || force) {
+            if (formValues.issueName.length < 5) {
+                errors.issueName = "Issue Name needs to be at least 5 characters."
+            }
+        }
+
+        if (touched.description || force) {
+            if (formValues.description.length < 15) {
+                errors.description = "Description needs to be at least 15 characters.";
+            }
+        }
+
+        return errors;
     }
+
+    const errors = validate(false);
 
     return (
         <div>
@@ -64,19 +111,21 @@ export default function OpenIssues() {
                                         label="Issue Name"
                                         variant="outlined"
                                         fullWidth
-                                        value={issueName}
-                                        onChange={e => changeIssueName(e)}
+                                        value={formValues.issueName}
+                                        onChange={e => handleInputChange(e)}
+                                        onBlur={() => handleBlur("issueName")}
                                     />
-                                    <Typography className={classes.error}>Issues Name is required.</Typography>
+                                    <Typography className={classes.error}>{errors.issueName}</Typography>
                                 </Grid>
                                 <Grid item xs={12} sm={2}>
                                     <InputLabel id="priority-label">Priority</InputLabel>
                                     <Select
                                         labelId="priority-label"
                                         id="priority"
+                                        name="priority"
                                         fullWidth
-                                        value={priority}
-                                        onChange={e => changePriority(e)}
+                                        value={formValues.priority}
+                                        onChange={e => handleInputChange(e)}
                                     >
                                         <MenuItem value={"priorityLow"}>Low</MenuItem>
                                         <MenuItem value={"priorityMed"}>Medium</MenuItem>
@@ -86,6 +135,7 @@ export default function OpenIssues() {
                                 <Grid item xs={12}>
                                     <TextField
                                         id="issueDescription"
+                                        name="description"
                                         className={classes.textField}
                                         label="Description"
                                         multiline
@@ -93,10 +143,11 @@ export default function OpenIssues() {
                                         minRows={25}
                                         fullWidth
                                         variant="outlined"
-                                        value={description}
-                                        onChange={e => changeDescription(e)}
+                                        value={formValues.description}
+                                        onChange={e => handleInputChange(e)}
+                                        onBlur={() => handleBlur("description")}
                                     />
-                                    <Typography className={classes.error}>Description is required.</Typography>
+                                    <Typography className={classes.error}>{errors.description}</Typography>
                                 </Grid>
                             </Grid>
                             <Grid container spacing={2} direction="column" alignItems="center">
