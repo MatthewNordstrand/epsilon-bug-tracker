@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import MainComponent from './components/MainComponent';
-import './App.css';
 import { BrowserRouter } from 'react-router-dom';
 import { createTheme, ThemeProvider } from '@material-ui/core';
+import './App.css';
 
 const theme = createTheme({
     palette: {
