@@ -5,6 +5,7 @@ import { Switch, Route, Redirect, withRouter } from 'react-router-dom';
 import DashboardPage from './Dashboard/DashboardPage';
 import Routes from '../shared/Routes';
 import OpenIssues from './OpenIssues/OpenIssuesPage';
+import ViewIssuesPage from '../ViewIssues/ViewIssuesPage';
 
 class MainComponent extends Component {
     constructor(props) {
@@ -70,11 +71,14 @@ class MainComponent extends Component {
                     <Route exact path="/">
                         <DashboardPage />
                     </Route>
-                    <Route exact path="/issues">
+                    <Route path="/issues">
                         <IssuesPage issues={this.state.issueData} />
                     </Route>
-                    <Route exact path="/openissue">
+                    <Route path="/openissue">
                         <OpenIssues />
+                    </Route>
+                    <Route path="/viewissue/:issueID">
+                        <ViewIssuesPage issueID={1}/>
                     </Route>
                     <Redirect to="/" />
                 </Switch>
