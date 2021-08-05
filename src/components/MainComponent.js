@@ -58,7 +58,8 @@ class MainComponent extends Component {
 
     render() {
         const curPath = this.props.location.pathname;
-        const route = Routes.filter(route => route.path === curPath)[0]; //Check if the curPath starts with route
+        const matchingRoutes = Routes.filter(route => curPath.startsWith(route.path));
+        const route = matchingRoutes[matchingRoutes.length - 1]; //Check if the curPath starts with route
 
         const routeName = route ? route.sidebarName : "Undefined";
 

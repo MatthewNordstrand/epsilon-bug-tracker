@@ -5,6 +5,8 @@ export default function ViewIssuePage(props) {
     let { issueID } = useParams();
 
     return(
-        <div>Hello world. Issue ID: {issueID}</div>
+        <div>
+            
+        </div>
     );
 }
