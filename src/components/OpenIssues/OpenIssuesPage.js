@@ -50,7 +50,7 @@ export default function OpenIssues() {
         var foundErrors = false;
         const errors = validate(true);
         Object.keys(errors).forEach(function(key) {
-            if (errors[key] != "") {
+            if (errors[key] !== "") {
                 foundErrors = true;
             }
         });

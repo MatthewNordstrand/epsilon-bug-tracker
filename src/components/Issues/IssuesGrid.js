@@ -7,7 +7,7 @@ import TableContainer from '@material-ui/core/TableContainer';
 import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
-import { Link } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 
 const useStyles = makeStyles((theme) => ({
     tableContainer: {
@@ -24,8 +24,10 @@ const useStyles = makeStyles((theme) => ({
 export default function IssuesGrid(props) {
     const classes = useStyles();
 
+    const history = useHistory();
+
     function gotoViewIssue(id) {
-        
+        history.push(`/viewissue/${id}`);
     }
 
     return (
