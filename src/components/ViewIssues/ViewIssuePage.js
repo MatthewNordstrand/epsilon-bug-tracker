@@ -1,6 +1,8 @@
 import React from "react";
-import { Grid, makeStyles, Paper, Typography } from "@material-ui/core";
-import { useParams } from "react-router";
+import { Button, Grid, makeStyles, Paper, Typography } from "@material-ui/core";
+import ArrowBackIcon from '@material-ui/icons/ArrowBack';
+import { useParams, useHistory } from "react-router";
+import { Link } from "react-router-dom";
 
 const useStyles = makeStyles((theme) => ({
     outerPaper: {
@@ -17,13 +19,23 @@ const useStyles = makeStyles((theme) => ({
         paddingLeft: theme.spacing(1),
         paddingRight: theme.spacing(1),
     },
+    button: {
+        marginBottom: theme.spacing(1),
+    },
 }));
 
 export default function ViewIssuePage(props) {
     const classes = useStyles();
     let { issueID } = useParams();
+    const history = useHistory();
 
     const issue = props.issueData.filter(issue => issue.id === +issueID)[0];
+
+    if (!issue) {
+        history.push("/issues");
+
+        return(<div />);
+    }
 
     return(
         <div className={classes.pageContainer}>
@@ -32,6 +44,18 @@ export default function ViewIssuePage(props) {
 
                 <Grid container spacing={2}>
                     <Grid item xs={3}>
+
+                        <Link to="/issues">
+                            <Button
+                                className={classes.button}
+                                variant="contained"
+                                color="secondary"
+                                startIcon={<ArrowBackIcon />}
+                            >
+                                Return to Issues
+                            </Button>
+                        </Link>
+
                         <Paper variant="outlined" className={classes.innerPaper}>
                             <Typography variant="body1">{issue.openedBy} opened this on {issue.openedOn}</Typography>
                             <Typography variant="body2">{issue.comments.length} comments</Typography>
