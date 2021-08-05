@@ -5,7 +5,7 @@ import { Switch, Route, Redirect, withRouter } from 'react-router-dom';
 import DashboardPage from './Dashboard/DashboardPage';
 import Routes from '../shared/Routes';
 import OpenIssues from './OpenIssues/OpenIssuesPage';
-import ViewIssuesPage from '../ViewIssues/ViewIssuesPage';
+import ViewIssuePage from './ViewIssues/ViewIssuePage';
 
 class MainComponent extends Component {
     constructor(props) {
@@ -58,7 +58,7 @@ class MainComponent extends Component {
 
     render() {
         const curPath = this.props.location.pathname;
-        const route = Routes.filter(route => route.path === curPath)[0];
+        const route = Routes.filter(route => route.path === curPath)[0]; //Check if the curPath starts with route
 
         const routeName = route ? route.sidebarName : "Undefined";
 
@@ -78,7 +78,7 @@ class MainComponent extends Component {
                         <OpenIssues />
                     </Route>
                     <Route path="/viewissue/:issueID">
-                        <ViewIssuesPage issueID={1}/>
+                        <ViewIssuePage issueID={1}/>
                     </Route>
                     <Redirect to="/" />
                 </Switch>

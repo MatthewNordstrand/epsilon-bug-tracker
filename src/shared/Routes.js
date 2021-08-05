@@ -19,6 +19,11 @@ const Routes = [
         sidebarName: 'Open Issue',
         showInNav: false,
     },
+    {
+        path: '/viewissue',
+        sidebarName: 'View Issue',
+        showInNav: false,
+    },
 ];
 
 export default Routes;

@@ -7,6 +7,7 @@ import TableContainer from '@material-ui/core/TableContainer';
 import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
+import { Link } from 'react-router-dom';
 
 const useStyles = makeStyles((theme) => ({
     tableContainer: {
@@ -23,8 +24,8 @@ const useStyles = makeStyles((theme) => ({
 export default function IssuesGrid(props) {
     const classes = useStyles();
 
-    function testFunction({id, issueName, openedBy}) {
-        alert(`You clicked on issue ${id}: ${issueName}, which was opened by ${openedBy}`);
+    function gotoViewIssue(id) {
+        
     }
 
     return (
@@ -44,7 +45,7 @@ export default function IssuesGrid(props) {
                 </TableHead>
                 <TableBody>
                     {props.issues.map((row) => (
-                        <TableRow onClick={() => testFunction(row)} hover key={row.id}>
+                        <TableRow onClick={() => gotoViewIssue(row.id)} hover key={row.id}>
                             <TableCell align="right" component="th" scope="row">{row.id}</TableCell>
                             <TableCell>{row.issueName}</TableCell>
                             <TableCell>{row.priority}</TableCell>
