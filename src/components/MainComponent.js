@@ -20,7 +20,8 @@ class MainComponent extends Component {
                     openedOn: '2021-07-20',
                     openedBy: 'Matt Nordstrand',
                     assignee: 'Matt Nordstrand',
-                    dateResolved: ''
+                    dateResolved: '',
+                    description: 'Nothing to report',
                 },
                 {
                     id: 2,
@@ -30,7 +31,8 @@ class MainComponent extends Component {
                     openedOn: '2021-07-20',
                     openedBy: 'Matt Nordstrand',
                     assignee: '',
-                    dateResolved: ''
+                    dateResolved: '',
+                    description: 'Nothing to report',
                 },
                 {
                     id: 3,
@@ -40,7 +42,8 @@ class MainComponent extends Component {
                     openedOn: '2021-07-20',
                     openedBy: 'Matt Nordstrand',
                     assignee: 'Matt Nordstrand',
-                    dateResolved: ''
+                    dateResolved: '',
+                    description: 'Nothing to report',
                 },
                 {
                     id: 4,
@@ -50,7 +53,8 @@ class MainComponent extends Component {
                     openedOn: '2021-07-20',
                     openedBy: 'Matt Nordstrand',
                     assignee: 'Matt Nordstrand',
-                    dateResolved: ''
+                    dateResolved: '',
+                    description: 'Nothing to report',
                 },
             ],
         };
@@ -59,7 +63,7 @@ class MainComponent extends Component {
     render() {
         const curPath = this.props.location.pathname;
         const matchingRoutes = Routes.filter(route => curPath.startsWith(route.path));
-        const route = matchingRoutes[matchingRoutes.length - 1]; //Check if the curPath starts with route
+        const route = matchingRoutes[matchingRoutes.length - 1]; //Check if the curPath starts with route. We grab the last object because it is the most specific.
 
         const routeName = route ? route.sidebarName : "Undefined";
 
@@ -79,7 +83,7 @@ class MainComponent extends Component {
                         <OpenIssues />
                     </Route>
                     <Route path="/viewissue/:issueID">
-                        <ViewIssuePage issueID={1}/>
+                        <ViewIssuePage issueData={this.state.issueData}/>
                     </Route>
                     <Redirect to="/" />
                 </Switch>
