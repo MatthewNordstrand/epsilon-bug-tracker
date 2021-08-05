@@ -22,6 +22,9 @@ class MainComponent extends Component {
                     assignee: 'Matt Nordstrand',
                     dateResolved: '',
                     description: 'Nothing to report',
+                    comments: [
+
+                    ],
                 },
                 {
                     id: 2,
@@ -33,6 +36,9 @@ class MainComponent extends Component {
                     assignee: '',
                     dateResolved: '',
                     description: 'Nothing to report',
+                    comments: [
+                        
+                    ],
                 },
                 {
                     id: 3,
@@ -44,6 +50,9 @@ class MainComponent extends Component {
                     assignee: 'Matt Nordstrand',
                     dateResolved: '',
                     description: 'Nothing to report',
+                    comments: [
+                        
+                    ],
                 },
                 {
                     id: 4,
@@ -55,6 +64,9 @@ class MainComponent extends Component {
                     assignee: 'Matt Nordstrand',
                     dateResolved: '',
                     description: 'Nothing to report',
+                    comments: [
+                        
+                    ],
                 },
             ],
         };

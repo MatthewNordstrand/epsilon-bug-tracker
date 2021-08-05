@@ -3,7 +3,7 @@ import { Grid, makeStyles, Paper, Typography } from "@material-ui/core";
 import { useParams } from "react-router";
 
 const useStyles = makeStyles((theme) => ({
-    paper: {
+    outerPaper: {
         padding: theme.spacing(2),
         paddingTop: 0,
     },
@@ -12,7 +12,11 @@ const useStyles = makeStyles((theme) => ({
     },
     titleHeading: {
         textAlign: "center",
-    }
+    },
+    innerPaper: {
+        paddingLeft: theme.spacing(1),
+        paddingRight: theme.spacing(1),
+    },
 }));
 
 export default function ViewIssuePage(props) {
@@ -23,18 +27,21 @@ export default function ViewIssuePage(props) {
 
     return(
         <div className={classes.pageContainer}>
-            <Paper className={classes.paper}>
+            <Paper className={classes.outerPaper}>
                 <Typography className={classes.titleHeading} variant="h3">Issue #{issueID}: {issue.issueName}</Typography>
 
                 <Grid container spacing={2}>
                     <Grid item xs={3}>
-                        <Paper>
-                            Hi
+                        <Paper variant="outlined" className={classes.innerPaper}>
+                            <Typography variant="body1">{issue.openedBy} opened this on {issue.openedOn}</Typography>
+                            <Typography variant="body2">{issue.comments.length} comments</Typography>
+                            <Typography variant="body1">Status: {issue.status}</Typography>
+                            <Typography variant="body1">Priority: {issue.priority}</Typography>
                         </Paper>
                     </Grid>
                     <Grid item xs={9}>
-                        <Paper>
-                            Yooo
+                        <Paper variant="outlined" className={classes.innerPaper}>
+                            <Typography variant="body1">{issue.description}</Typography>
                         </Paper>
                     </Grid>
                 </Grid>
