@@ -6,72 +6,15 @@ import DashboardPage from './Dashboard/DashboardPage';
 import Routes from '../shared/Routes';
 import OpenIssues from './OpenIssues/OpenIssuesPage';
 import ViewIssuePage from './ViewIssues/ViewIssuePage';
+import { connect } from 'react-redux';
+
+const mapStateToProps = state => {
+    return {
+        issueData: state.issueData,
+    }
+}
 
 class MainComponent extends Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            issueData: [
-                {
-                    id: 1,
-                    issueName: 'Test Issue',
-                    priority: 'HIGH',
-                    status: 'In Progress',
-                    openedOn: '2021-07-20',
-                    openedBy: 'Matt Nordstrand',
-                    assignee: 'Matt Nordstrand',
-                    dateResolved: '',
-                    description: 'Nothing to report',
-                    comments: [
-
-                    ],
-                },
-                {
-                    id: 2,
-                    issueName: 'Ooga Booga',
-                    priority: 'LOW',
-                    status: 'New',
-                    openedOn: '2021-07-20',
-                    openedBy: 'Matt Nordstrand',
-                    assignee: '',
-                    dateResolved: '',
-                    description: 'Nothing to report',
-                    comments: [
-                        
-                    ],
-                },
-                {
-                    id: 3,
-                    issueName: 'This is cool',
-                    priority: 'HIGH',
-                    status: 'In Progress',
-                    openedOn: '2021-07-20',
-                    openedBy: 'Matt Nordstrand',
-                    assignee: 'Matt Nordstrand',
-                    dateResolved: '',
-                    description: 'Nothing to report',
-                    comments: [
-                        
-                    ],
-                },
-                {
-                    id: 4,
-                    issueName: 'Test Issue',
-                    priority: 'HIGH',
-                    status: 'In Progress',
-                    openedOn: '2021-07-20',
-                    openedBy: 'Matt Nordstrand',
-                    assignee: 'Matt Nordstrand',
-                    dateResolved: '',
-                    description: 'Nothing to report',
-                    comments: [
-                        
-                    ],
-                },
-            ],
-        };
-    }
-
     render() {
         const curPath = this.props.location.pathname;
         const matchingRoutes = Routes.filter(route => curPath.startsWith(route.path));
@@ -89,13 +32,13 @@ class MainComponent extends Component {
                         <DashboardPage />
                     </Route>
                     <Route path="/issues">
-                        <IssuesPage issues={this.state.issueData} />
+                        <IssuesPage issues={this.props.issueData} />
                     </Route>
                     <Route path="/openissue">
                         <OpenIssues />
                     </Route>
                     <Route path="/viewissue/:issueID">
-                        <ViewIssuePage issueData={this.state.issueData}/>
+                        <ViewIssuePage issueData={this.props.issueData}/>
                     </Route>
                     <Redirect to="/" />
                 </Switch>
@@ -104,4 +47,4 @@ class MainComponent extends Component {
     }
 }
 
-export default withRouter(MainComponent);
+export default withRouter(connect(mapStateToProps)(MainComponent));
