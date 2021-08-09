@@ -26,7 +26,7 @@ function SideNav(props) {
             <MenuList className={classes.list}>
                 {Routes.filter(route => route.showInNav).map((route, key) => {
                     return (
-                        <NavLink key={key} to={route.path} style={{ textDecoration: "none", color: "inherit" }}>
+                        <NavLink key={key} to={route.path} className={classes.navLink}>
                             <MenuItem selected={activeRoute(route.path)}>
                                 <ListItemText primary={route.sidebarName} />
                             </MenuItem>
