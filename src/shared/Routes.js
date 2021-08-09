@@ -2,7 +2,7 @@ const Routes = [
     {
         path: '/',
         sidebarName: 'Dashboard',
-        showInNav: true,
+        showInNav: false,
     },
     {
         path: '/issues',
