@@ -3,6 +3,7 @@ import { Button, Grid, makeStyles, Paper, Typography } from "@material-ui/core";
 import ArrowBackIcon from '@material-ui/icons/ArrowBack';
 import { useParams, useHistory } from "react-router";
 import { Link } from "react-router-dom";
+import { connect } from "react-redux";
 
 const useStyles = makeStyles((theme) => ({
     outerPaper: {
@@ -24,7 +25,13 @@ const useStyles = makeStyles((theme) => ({
     },
 }));
 
-export default function ViewIssuePage(props) {
+const mapStateToProps = state => {
+    return {
+        issueData: state.issueData,
+    }
+}
+
+function ViewIssuePage(props) {
     const classes = useStyles();
     let { issueID } = useParams();
     const history = useHistory();
@@ -58,7 +65,7 @@ export default function ViewIssuePage(props) {
 
                         <Paper variant="outlined" className={classes.innerPaper}>
                             <Typography variant="body1">{issue.openedBy} opened this on {issue.openedOn}</Typography>
-                            <Typography variant="body2">{issue.comments.length} comments</Typography>
+                            {/* <Typography variant="body2">{issue.comments.length} comments</Typography> */}
                             <Typography variant="body1">Status: {issue.status}</Typography>
                             <Typography variant="body1">Priority: {issue.priority}</Typography>
                         </Paper>
@@ -73,3 +80,5 @@ export default function ViewIssuePage(props) {
         </div>
     );
 }
+
+export default connect(mapStateToProps)(ViewIssuePage);
