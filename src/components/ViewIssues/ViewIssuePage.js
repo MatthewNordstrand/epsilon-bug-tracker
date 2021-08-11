@@ -38,18 +38,18 @@ function ViewIssuePage(props) {
 
     const issue = props.issues.issues.filter(issue => issue.id === +issueID)[0];
 
+    if (!issue) {
+        history.push("/issues");
+
+        return(<div />);
+    }
+
     const desc = issue.desc.split('\n').map((line, i) => (
         <span key={i}>
             {line}
             <br />
         </span>
     ));
-
-    if (!issue) {
-        history.push("/issues");
-
-        return(<div />);
-    }
 
     return(
         <div className={classes.pageContainer}>
