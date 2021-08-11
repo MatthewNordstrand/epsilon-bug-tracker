@@ -67,7 +67,8 @@ function ViewIssuePage(props) {
                             <Typography variant="body1">{issue.openedBy} opened this on {issue.openedOn}</Typography>
                             <Typography variant="body2">{issue.comments.length} comments</Typography>
                             <Typography variant="body1">Status: {issue.status}</Typography>
-                            <Typography variant="body1">Priority: {issue.priority}</Typography>
+                            <Typography variant="body1">Priority: {priorityFormat(issue.priority)}</Typography>
+                            <Typography variant="body1">{issue.assignee ? `Assigned to: ${issue.assignee}` : "NOT ASSIGNED"}</Typography>
                         </Paper>
                     </Grid>
                     <Grid item xs={9}>
@@ -79,6 +80,19 @@ function ViewIssuePage(props) {
             </Paper>
         </div>
     );
+}
+
+function priorityFormat(priority) {
+    switch(priority) {
+        case "priorityLow":
+            return "Low";
+        case "priorityMed":
+            return "Medium";
+        case "priorityHigh":
+            return "High";
+        default:
+            return priority;
+    }
 }
 
 export default connect(mapStateToProps)(ViewIssuePage);
