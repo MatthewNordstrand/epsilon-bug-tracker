@@ -2,14 +2,9 @@
 import React, { useState } from 'react';
 import { makeStyles, Grid, Paper, Typography, TextField, Select, MenuItem, InputLabel, Button } from '@material-ui/core';
 import { connect } from 'react-redux';
-import { addIssueAction } from '../../redux/issues/issueAdded';
 import { useHistory } from 'react-router';
-
-const mapStateToProps = state => {
-    return {
-        issueNum: state.issueNum,
-    }
-}
+import { createIssue } from '../../redux/ActionCreators';
+import { useAuth0 } from '@auth0/auth0-react';
 
 const useStyles = makeStyles((theme) => ({
     paper: {
@@ -31,10 +26,20 @@ const useStyles = makeStyles((theme) => ({
     },
 }));
 
+const mapStateToProps = state => {
+    return {
+        issueNum: state.issueNum,
+    }
+}
+
+const mapDispatchToProps = {
+    createIssue: (issueName, desc, priority, openedBy) => (createIssue(issueName, desc, priority, openedBy)),
+};
+
 function OpenIssues(props) {
     const classes = useStyles();
-
     const history = useHistory();
+    const { user, isAuthenticated } = useAuth0();
 
     const [formValues, setFormValues] = useState({
         issueName: "",
@@ -68,14 +73,7 @@ function OpenIssues(props) {
 
         if (foundErrors) return; //We found errors, so we won't submit the form.
 
-        const action = addIssueAction;
-        action.issueName = formValues.issueName;
-        action.priority = formValues.priority;
-        action.description = formValues.description;
-
-        props.dispatch(action);
-
-        history.push(`/viewissue/${props.issueNum}`);
+        props.createIssue(formValues.issueName, formValues.description, formValues.priority, isAuthenticated ? user : "Guest");
     }
 
     const handleInputChange = e => {
@@ -119,7 +117,7 @@ function OpenIssues(props) {
                 <Grid container className={classes.pageContainer}>
                     <Grid item xs={12}>
                         <Paper className={classes.paper}>
-                            <Typography className={classes.titleHeading} variant="h3">Open Issue #{props.issueNum}</Typography>
+                            <Typography className={classes.titleHeading} variant="h3">Open Issue</Typography>
                             <Grid container spacing={3}>
                                 <Grid item lg={3} /> {/*Spacing the object to center it*/}
                                 <Grid item xs={12} sm={9} lg={4}>
@@ -181,4 +179,4 @@ function OpenIssues(props) {
     );
 }
 
-export default connect(mapStateToProps)(OpenIssues);
+export default connect(mapStateToProps, mapDispatchToProps)(OpenIssues);

@@ -27,7 +27,7 @@ const useStyles = makeStyles((theme) => ({
 
 const mapStateToProps = state => {
     return {
-        issueData: state.issueData,
+        issues: state.issues,
     }
 }
 
@@ -36,7 +36,7 @@ function ViewIssuePage(props) {
     let { issueID } = useParams();
     const history = useHistory();
 
-    const issue = props.issueData.filter(issue => issue.id === +issueID)[0];
+    const issue = props.issues.issues.filter(issue => issue.id === +issueID)[0];
 
     if (!issue) {
         history.push("/issues");
@@ -65,14 +65,14 @@ function ViewIssuePage(props) {
 
                         <Paper variant="outlined" className={classes.innerPaper}>
                             <Typography variant="body1">{issue.openedBy} opened this on {issue.openedOn}</Typography>
-                            {/* <Typography variant="body2">{issue.comments.length} comments</Typography> */}
+                            <Typography variant="body2">{issue.comments.length} comments</Typography>
                             <Typography variant="body1">Status: {issue.status}</Typography>
                             <Typography variant="body1">Priority: {issue.priority}</Typography>
                         </Paper>
                     </Grid>
                     <Grid item xs={9}>
                         <Paper variant="outlined" className={classes.innerPaper}>
-                            <Typography variant="body1">{issue.description}</Typography>
+                            <Typography variant="body1">{issue.desc}</Typography>
                         </Paper>
                     </Grid>
                 </Grid>

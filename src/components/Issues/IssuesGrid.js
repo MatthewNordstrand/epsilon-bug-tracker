@@ -8,6 +8,7 @@ import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
 import { useHistory } from 'react-router-dom';
+import { connect } from 'react-redux';
 
 const useStyles = makeStyles((theme) => ({
     tableContainer: {
@@ -21,7 +22,13 @@ const useStyles = makeStyles((theme) => ({
     },
 }));
 
-export default function IssuesGrid(props) {
+const mapStateToProps = state => {
+    return {
+        issues: state.issues,
+    }
+}
+
+function IssuesGrid(props) {
     const classes = useStyles();
 
     const history = useHistory();
@@ -46,7 +53,7 @@ export default function IssuesGrid(props) {
                     </TableRow>
                 </TableHead>
                 <TableBody>
-                    {props.issues.map((row) => (
+                    {props.issues.issues.map((row) => (
                         <TableRow onClick={() => gotoViewIssue(row.id)} hover key={row.id}>
                             <TableCell align="right" component="th" scope="row">{row.id}</TableCell>
                             <TableCell>{row.issueName}</TableCell>
@@ -63,3 +70,5 @@ export default function IssuesGrid(props) {
         </TableContainer>
     );
 }
+
+export default connect(mapStateToProps)(IssuesGrid);

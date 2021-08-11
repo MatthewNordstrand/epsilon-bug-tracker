@@ -8,12 +8,6 @@ import OpenIssues from './OpenIssues/OpenIssuesPage';
 import ViewIssuePage from './ViewIssues/ViewIssuePage';
 import { connect } from 'react-redux';
 
-const mapStateToProps = state => {
-    return {
-        issueData: state.issueData,
-    }
-}
-
 class MainComponent extends Component {
     render() {
         const curPath = this.props.location.pathname;
@@ -32,13 +26,13 @@ class MainComponent extends Component {
                         <DashboardPage /> Dashboard is temporarily disabled because it doesn't display anything.
                     </Route> */}
                     <Route path="/issues">
-                        <IssuesPage issues={this.props.issueData} />
+                        <IssuesPage />
                     </Route>
                     <Route path="/openissue">
                         <OpenIssues />
                     </Route>
                     <Route path="/viewissue/:issueID">
-                        <ViewIssuePage issueData={this.props.issueData}/>
+                        <ViewIssuePage />
                     </Route>
                     {/* <Redirect to="/" /> */}
                     <Redirect to="/issues" />
@@ -48,4 +42,4 @@ class MainComponent extends Component {
     }
 }
 
-export default withRouter(connect(mapStateToProps)(MainComponent));
+export default withRouter(MainComponent);
