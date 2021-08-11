@@ -99,6 +99,7 @@ function ViewIssuePage(props) {
                             variant="contained"
                             startIcon={<DeveloperModeIcon />}
                             onClick={() => props.assignIssue(issueID, user.name)}
+                            disabled={issue.assignee}
                         >
                             Claim Issue
                         </Button>
