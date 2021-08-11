@@ -22,9 +22,9 @@ class MainComponent extends Component {
             <div>
                 <TitleBar title={routeName} />
                 <Switch>
-                    {/* <Route exact path="/">
-                        <DashboardPage /> Dashboard is temporarily disabled because it doesn't display anything.
-                    </Route> */}
+                    <Route exact path="/">
+                        <DashboardPage />
+                    </Route>
                     <Route path="/issues">
                         <IssuesPage />
                     </Route>
@@ -34,8 +34,7 @@ class MainComponent extends Component {
                     <Route path="/viewissue/:issueID">
                         <ViewIssuePage />
                     </Route>
-                    {/* <Redirect to="/" /> */}
-                    <Redirect to="/issues" />
+                    <Redirect to="/" />
                 </Switch>
             </div>
         );

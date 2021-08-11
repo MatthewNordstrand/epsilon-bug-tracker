@@ -38,6 +38,13 @@ function ViewIssuePage(props) {
 
     const issue = props.issues.issues.filter(issue => issue.id === +issueID)[0];
 
+    const desc = issue.desc.split('\n').map((line, i) => (
+        <span key={i}>
+            {line}
+            <br />
+        </span>
+    ));
+
     if (!issue) {
         history.push("/issues");
 
@@ -73,7 +80,7 @@ function ViewIssuePage(props) {
                     </Grid>
                     <Grid item xs={9}>
                         <Paper variant="outlined" className={classes.innerPaper}>
-                            <Typography variant="body1">{issue.desc}</Typography>
+                            <Typography variant="body1">{desc}</Typography>
                         </Paper>
                     </Grid>
                 </Grid>

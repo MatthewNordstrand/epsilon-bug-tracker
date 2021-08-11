@@ -73,8 +73,8 @@ function OpenIssues(props) {
 
         if (foundErrors) return; //We found errors, so we won't submit the form.
 
-        props.createIssue(formValues.issueName, formValues.description, formValues.priority, isAuthenticated ? user : "Guest");
-
+        props.createIssue(formValues.issueName, formValues.description, formValues.priority, isAuthenticated ? user.name : "Guest");
+        
         history.push("/issues"); //TEMPORARY: Change to move to the new issue after it is created.
     }
 
