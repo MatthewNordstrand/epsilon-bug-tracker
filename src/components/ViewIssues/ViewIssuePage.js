@@ -1,9 +1,13 @@
 import React from "react";
 import { Button, Grid, makeStyles, Paper, Typography } from "@material-ui/core";
 import ArrowBackIcon from '@material-ui/icons/ArrowBack';
+import DeveloperModeIcon from '@material-ui/icons/DeveloperMode';
+import DeleteForeverIcon from '@material-ui/icons/DeleteForever';
 import { useParams, useHistory } from "react-router";
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
+import { assignIssue } from "../../redux/ActionCreators";
+import { useAuth0 } from "@auth0/auth0-react";
 
 const useStyles = makeStyles((theme) => ({
     outerPaper: {
@@ -19,9 +23,16 @@ const useStyles = makeStyles((theme) => ({
     innerPaper: {
         paddingLeft: theme.spacing(1),
         paddingRight: theme.spacing(1),
+        marginTop: theme.spacing(1),
+        marginBottom: theme.spacing(1),
+    },
+    descPaper: {
+        paddingLeft: theme.spacing(1),
+        paddingRight: theme.spacing(1),
+        marginTop: theme.spacing(1),
     },
     button: {
-        marginBottom: theme.spacing(1),
+        margin: theme.spacing(1),
     },
 }));
 
@@ -31,10 +42,15 @@ const mapStateToProps = state => {
     }
 }
 
+const mapDispatchToProps = {
+    assignIssue: (id, assignee) => (assignIssue(id, assignee)),
+};
+
 function ViewIssuePage(props) {
     const classes = useStyles();
     let { issueID } = useParams();
     const history = useHistory();
+    const { user, isAuthenticated } = useAuth0();
 
     const issue = props.issues.issues.filter(issue => issue.id === +issueID)[0];
 
@@ -77,9 +93,28 @@ function ViewIssuePage(props) {
                             <Typography variant="body1">Priority: {priorityFormat(issue.priority)}</Typography>
                             <Typography variant="body1">{issue.assignee ? `Assigned to: ${issue.assignee}` : "NOT ASSIGNED"}</Typography>
                         </Paper>
+
+                        <Button
+                            className={classes.button}
+                            variant="contained"
+                            startIcon={<DeveloperModeIcon />}
+                            onClick={() => props.assignIssue(issueID, user.name)}
+                        >
+                            Claim Issue
+                        </Button>
+
+                        <br />
+
+                        <Button
+                            className={classes.button}
+                            variant="contained"
+                            startIcon={<DeleteForeverIcon />}
+                        >
+                            Delete Issue
+                        </Button>
                     </Grid>
                     <Grid item xs={9}>
-                        <Paper variant="outlined" className={classes.innerPaper}>
+                        <Paper variant="outlined" className={classes.descPaper}>
                             <Typography variant="body1">{desc}</Typography>
                         </Paper>
                     </Grid>
@@ -102,4 +137,4 @@ function priorityFormat(priority) {
     }
 }
 
-export default connect(mapStateToProps)(ViewIssuePage);
+export default connect(mapStateToProps, mapDispatchToProps)(ViewIssuePage);

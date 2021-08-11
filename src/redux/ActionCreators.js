@@ -9,3 +9,11 @@ export const createIssue = (issueName, desc, priority, openedBy) => ({
         openedBy: openedBy
     }
 });
+
+export const assignIssue = (id, assignee) => ({
+    type: ActionTypes.ASSIGN_ISSUE,
+    payload: {
+        id: id,
+        assignee: assignee
+    }
+});

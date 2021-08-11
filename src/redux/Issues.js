@@ -21,6 +21,18 @@ export const Issues = (state = {
             };
 
             return {...state, issues: [...state.issues, newIssue], issueNum: state.issueNum + 1};
+
+        case ActionTypes.ASSIGN_ISSUE:
+
+            const newIssues = state.issues.map(issue => {
+                if (+issue.id === +action.payload.id) {
+                    return {...issue, assignee: action.payload.assignee};
+                }
+                return issue;
+            });
+
+            return {...state, issues: newIssues};
+
         default:
             return state;
     }
