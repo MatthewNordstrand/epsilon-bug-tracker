@@ -98,7 +98,7 @@ function ViewIssuePage(props) {
                             className={classes.button}
                             variant="contained"
                             startIcon={<DeveloperModeIcon />}
-                            onClick={() => props.assignIssue(issueID, user.name)}
+                            onClick={() => props.assignIssue(issueID, isAuthenticated ? user.name : "Guest")}
                             disabled={issue.assignee}
                         >
                             Claim Issue
