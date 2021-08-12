@@ -26,7 +26,7 @@ export const Issues = (state = {
 
             const newIssues = state.issues.map(issue => {
                 if (+issue.id === +action.payload.id) {
-                    return {...issue, assignee: action.payload.assignee};
+                    return {...issue, assignee: action.payload.assignee, status: "In Progress"};
                 }
                 return issue;
             });
