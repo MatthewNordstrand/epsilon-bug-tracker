@@ -22,13 +22,7 @@ const useStyles = makeStyles((theme) => ({
     },
 }));
 
-const mapStateToProps = state => {
-    return {
-        issues: state.issues,
-    }
-}
-
-function IssuesGrid(props) {
+export default function IssuesGrid(props) {
     const classes = useStyles();
 
     const history = useHistory();
@@ -53,16 +47,16 @@ function IssuesGrid(props) {
                     </TableRow>
                 </TableHead>
                 <TableBody>
-                    {props.issues.issues.map((row) => (
-                        <TableRow onClick={() => gotoViewIssue(row.id)} hover key={row.id}>
-                            <TableCell align="right" component="th" scope="row">{row.id}</TableCell>
-                            <TableCell>{row.issueName}</TableCell>
-                            <TableCell>{row.priority}</TableCell>
-                            <TableCell>{row.status}</TableCell>
-                            <TableCell>{row.openedOn}</TableCell>
-                            <TableCell>{row.openedBy}</TableCell>
-                            <TableCell>{row.assignee}</TableCell>
-                            <TableCell>{row.dateResolved}</TableCell>
+                    {props.issues.map((issue) => (
+                        <TableRow onClick={() => gotoViewIssue(issue.id)} hover key={issue.id}>
+                            <TableCell align="right" component="th" scope="row">{issue.id}</TableCell>
+                            <TableCell>{issue.issueName}</TableCell>
+                            <TableCell>{issue.priority}</TableCell>
+                            <TableCell>{issue.status}</TableCell>
+                            <TableCell>{issue.openedOn}</TableCell>
+                            <TableCell>{issue.openedBy}</TableCell>
+                            <TableCell>{issue.assignee}</TableCell>
+                            <TableCell>{issue.dateResolved}</TableCell>
                         </TableRow>
                     ))}
                 </TableBody>
@@ -70,5 +64,3 @@ function IssuesGrid(props) {
         </TableContainer>
     );
 }
-
-export default connect(mapStateToProps)(IssuesGrid);

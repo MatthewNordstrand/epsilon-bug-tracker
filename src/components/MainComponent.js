@@ -6,7 +6,6 @@ import DashboardPage from './Dashboard/DashboardPage';
 import Routes from '../shared/Routes';
 import OpenIssues from './OpenIssues/OpenIssuesPage';
 import ViewIssuePage from './ViewIssues/ViewIssuePage';
-import { connect } from 'react-redux';
 
 class MainComponent extends Component {
     render() {

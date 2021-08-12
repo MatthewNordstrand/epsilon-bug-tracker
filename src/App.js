@@ -10,6 +10,9 @@ import './App.css';
 const theme = createTheme({
     palette: {
         type: "dark",
+        primary: {
+            main: "#000",
+        }
     },
 });
 

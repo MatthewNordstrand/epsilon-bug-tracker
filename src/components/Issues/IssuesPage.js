@@ -2,6 +2,7 @@ import React from 'react';
 import { makeStyles, Grid, Paper, Typography, Button } from '@material-ui/core';
 import IssuesGrid from './IssuesGrid';
 import { Link } from 'react-router-dom';
+import { connect } from 'react-redux';
 
 const useStyles = makeStyles((theme) => ({
     paper: {
@@ -16,7 +17,13 @@ const useStyles = makeStyles((theme) => ({
     }
 }));
 
-export default function IssuesPage(props) {
+const mapStateToProps = state => {
+    return {
+        issues: state.issues.issues,
+    }
+}
+
+function IssuesPage(props) {
     const classes = useStyles();
 
     return (
@@ -29,9 +36,12 @@ export default function IssuesPage(props) {
                             <Button variant="contained" color="secondary" size="small">Open Issue</Button>
                         </Link>
                         <IssuesGrid issues={props.issues} />
+                        {props.issues.length <= 0 && <h2 className={classes.titleHeading}>There are currently no issues in the system.</h2>}
                     </Paper>
                 </Grid>
             </Grid>
         </div>
     );
 }
+
+export default connect(mapStateToProps)(IssuesPage);
