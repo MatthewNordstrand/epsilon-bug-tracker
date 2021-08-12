@@ -1,5 +1,6 @@
 import { makeStyles, Paper, Typography, TextField, Button } from '@material-ui/core';
 import React, { useState } from 'react';
+import { useAuth0 } from '@auth0/auth0-react';
 
 const useStyles = makeStyles((theme) => ({
     outerPaper: {
@@ -18,14 +19,31 @@ const useStyles = makeStyles((theme) => ({
     },
 }));
 
-export default function CommentsSection({comments}) {
+export default function CommentsSection({comments, issueId, addComment}) {
     const classes = useStyles();
+    const { user, isAuthenticated } = useAuth0();
     const [newComment, setNewComment] = useState("");
+
+    const submitComment = () => {
+        if (newComment == "") return; //Do nothing if there is no comment.
+
+        addComment(issueId, isAuthenticated ? user.name : "Guest", newComment);
+
+        setNewComment("");
+    }
+
+    const curComments = comments.map(comment => {
+        return (<Comment author={comment.author} date={comment.date} comment={comment.comment} />);
+    });
 
     return (
         <Paper className={classes.outerPaper} variant="outlined">
             <Typography variant="h4">Comments</Typography>
-            <Comment author="Matt Nordstrand" date="2/4/1994" comment="message of the comment" />
+            
+            {curComments}
+
+            {comments.length <= 0 && <h4>&emsp;There are currently no comments.</h4>}
+
             <div className={classes.textFieldContainer}>
                 <TextField
                     id="comment"
@@ -35,9 +53,9 @@ export default function CommentsSection({comments}) {
                     fullWidth
                     variant="outlined"
                     value={newComment}
-                    onChange={e => setNewComment(e.value)}
+                    onChange={e => setNewComment(e.target.value)}
                 />
-                <Button variant="contained">Submit Comment</Button>
+                <Button variant="contained" onClick={() => submitComment()}>Submit Comment</Button>
             </div>
         </Paper>
     );

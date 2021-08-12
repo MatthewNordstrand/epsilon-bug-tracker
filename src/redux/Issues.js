@@ -24,14 +24,31 @@ export const Issues = (state = {
 
         case ActionTypes.ASSIGN_ISSUE:
 
-            const newIssues = state.issues.map(issue => {
+            const newIssuesAssign = state.issues.map(issue => {
                 if (+issue.id === +action.payload.id) {
                     return {...issue, assignee: action.payload.assignee, status: "In Progress"};
                 }
                 return issue;
             });
 
-            return {...state, issues: newIssues};
+            return {...state, issues: newIssuesAssign};
+        
+        case ActionTypes.ADD_COMMENT:
+
+            const newIssuesAddComment = state.issues.map(issue => {
+                if (+issue.id === +action.payload.issueId) {
+                    return {...issue, comments: issue.comments.concat(
+                        {
+                            author: action.payload.author,
+                            date: new Date().toISOString(),
+                            comment: action.payload.comment
+                        }
+                    )};
+                }
+                return issue;
+            });
+
+            return {...state, issues: newIssuesAddComment};
 
         default:
             return state;

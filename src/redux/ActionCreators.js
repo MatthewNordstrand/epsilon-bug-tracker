@@ -17,3 +17,12 @@ export const assignIssue = (id, assignee) => ({
         assignee: assignee
     }
 });
+
+export const addComment = (issueId, author, comment) => ({
+    type: ActionTypes.ADD_COMMENT,
+    payload: {
+        issueId: issueId,
+        author: author,
+        comment: comment,
+    }
+});

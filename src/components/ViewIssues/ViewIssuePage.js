@@ -6,7 +6,7 @@ import DeleteForeverIcon from '@material-ui/icons/DeleteForever';
 import { useParams, useHistory } from "react-router";
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
-import { assignIssue } from "../../redux/ActionCreators";
+import { assignIssue, addComment } from "../../redux/ActionCreators";
 import { useAuth0 } from "@auth0/auth0-react";
 import CommentsSection from "./CommentsSection";
 
@@ -28,8 +28,7 @@ const useStyles = makeStyles((theme) => ({
         marginBottom: theme.spacing(1),
     },
     descPaper: {
-        paddingLeft: theme.spacing(1),
-        paddingRight: theme.spacing(1),
+        padding: theme.spacing(1),
         marginTop: theme.spacing(1),
     },
     button: {
@@ -45,6 +44,7 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = {
     assignIssue: (id, assignee) => (assignIssue(id, assignee)),
+    addComment: (issueId, author, comment) => (addComment(issueId, author, comment)),
 };
 
 function ViewIssuePage(props) {
@@ -117,9 +117,10 @@ function ViewIssuePage(props) {
                     </Grid>
                     <Grid item xs={9}>
                         <Paper variant="outlined" className={classes.descPaper}>
+                            <Typography variant="h4">Issue Details</Typography>
                             <Typography variant="body1">{desc}</Typography>
                         </Paper>
-                        <CommentsSection />
+                        <CommentsSection comments={issue.comments} issueId={issue.id} addComment={props.addComment} />
                     </Grid>
                 </Grid>
             </Paper>
