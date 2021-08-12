@@ -8,6 +8,7 @@ import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 import { assignIssue } from "../../redux/ActionCreators";
 import { useAuth0 } from "@auth0/auth0-react";
+import CommentsSection from "./CommentsSection";
 
 const useStyles = makeStyles((theme) => ({
     outerPaper: {
@@ -118,6 +119,7 @@ function ViewIssuePage(props) {
                         <Paper variant="outlined" className={classes.descPaper}>
                             <Typography variant="body1">{desc}</Typography>
                         </Paper>
+                        <CommentsSection />
                     </Grid>
                 </Grid>
             </Paper>
