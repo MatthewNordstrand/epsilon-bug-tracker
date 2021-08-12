@@ -48,8 +48,8 @@ export default function IssuesGrid(props) {
                 </TableHead>
                 <TableBody>
                     {props.issues.map((issue) => (
-                        <TableRow onClick={() => gotoViewIssue(issue.id)} hover key={issue.id}>
-                            <TableCell align="right" component="th" scope="row">{issue.id}</TableCell>
+                        <TableRow onClick={() => gotoViewIssue(issue.issueId)} hover key={issue.issueId}>
+                            <TableCell align="right" component="th" scope="row">{issue.issueId}</TableCell>
                             <TableCell>{issue.issueName}</TableCell>
                             <TableCell>{issue.priority}</TableCell>
                             <TableCell>{issue.status}</TableCell>

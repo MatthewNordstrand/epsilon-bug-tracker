@@ -10,7 +10,7 @@ export const Issues = (state = {
         case ActionTypes.CREATE_ISSUE:
 
             const newIssue = {
-                id: state.issueNum,
+                issueId: state.issueNum,
                 issueName: action.payload.issueName,
                 desc: action.payload.desc,
                 priority: action.payload.priority,
@@ -27,13 +27,24 @@ export const Issues = (state = {
         case ActionTypes.ASSIGN_ISSUE:
 
             const newIssuesAssign = state.issues.map(issue => {
-                if (+issue.id === +action.payload.id) {
+                if (+issue.issueId === +action.payload.issueId) {
                     return {...issue, assignee: action.payload.assignee, status: "In Progress"};
                 }
                 return issue;
             });
 
             return {...state, issues: newIssuesAssign};
+        
+        case ActionTypes.COMPLETE_ISSUE:
+
+            const newIssuesComplete = state.issues.map(issue => {
+                if (+issue.issueId === +action.payload.issueId) {
+                    return {...issue, status: "Complete"};
+                }
+                return issue;
+            });
+
+            return {...state, issues: newIssuesComplete};
         
         case ActionTypes.ADD_COMMENT:
 
