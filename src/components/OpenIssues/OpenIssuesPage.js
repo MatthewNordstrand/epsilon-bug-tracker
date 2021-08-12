@@ -1,6 +1,6 @@
 // @ts-nocheck
 import React, { useState } from 'react';
-import { makeStyles, Grid, Paper, Typography, TextField, Select, MenuItem, InputLabel, Button } from '@material-ui/core';
+import { makeStyles, Grid, Paper, Typography, TextField, Select, MenuItem, InputLabel, Button, CircularProgress } from '@material-ui/core';
 import { connect } from 'react-redux';
 import { useHistory } from 'react-router';
 import { createIssue } from '../../redux/ActionCreators';
@@ -24,11 +24,26 @@ const useStyles = makeStyles((theme) => ({
     error: {
         color: "red",
     },
+    submitContainer: {
+        width: "100%",
+        position: "relative"
+    },
+    submitButton: {
+
+    },
+    submitProgress: {
+        color: "green",
+        position: "absolute",
+        top: "50%",
+        left: "50%",
+        marginTop: -12,
+        marginLeft: -12,
+    },
 }));
 
 const mapStateToProps = state => {
     return {
-        issueNum: state.issueNum,
+        issueNum: state.issues.issueNum,
     }
 }
 
@@ -40,6 +55,7 @@ function OpenIssues(props) {
     const classes = useStyles();
     const history = useHistory();
     const { user, isAuthenticated } = useAuth0();
+    const [loading, setLoading] = useState(false);
 
     const [formValues, setFormValues] = useState({
         issueName: "",
@@ -73,9 +89,13 @@ function OpenIssues(props) {
 
         if (foundErrors) return; //We found errors, so we won't submit the form.
 
+        setLoading(true);
+
         props.createIssue(formValues.issueName, formValues.description, formValues.priority, isAuthenticated ? user.name : "Guest");
-        
-        history.push("/issues"); //TEMPORARY: Change to move to the new issue after it is created.
+
+        setTimeout(() => {
+            history.push(`/viewissue/${props.issueNum}`);
+        }, 1000);
     }
 
     const handleInputChange = e => {
@@ -170,7 +190,20 @@ function OpenIssues(props) {
                             </Grid>
                             <Grid container spacing={2} direction="column" alignItems="center">
                                 <Grid container item xs={6} md={4} lg={2}>
-                                    <Button type="submit" variant="contained" color="secondary" fullWidth>Open Issue</Button>
+
+                                    <div className={classes.submitContainer}>
+                                        <Button className={classes.submitButton}
+                                            type="submit"
+                                            variant="contained"
+                                            color="secondary"
+                                            fullWidth
+                                            disabled={loading}
+                                        >
+                                            Open Issue
+                                        </Button>
+                                        {loading && <CircularProgress size={24} className={classes.submitProgress} />}
+                                    </div>
+
                                 </Grid>
                             </Grid>
                         </Paper>
