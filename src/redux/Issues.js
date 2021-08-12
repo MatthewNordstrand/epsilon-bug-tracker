@@ -4,6 +4,8 @@ export const Issues = (state = {
     issueNum: 1,
     issues: []
 }, action) => {
+    const curDate = new Date();
+
     switch (action.type) {
         case ActionTypes.CREATE_ISSUE:
 
@@ -13,7 +15,7 @@ export const Issues = (state = {
                 desc: action.payload.desc,
                 priority: action.payload.priority,
                 status: "New",
-                openedOn: new Date().toDateString(),
+                openedOn: curDate.toDateString(),
                 openedBy: action.payload.openedBy,
                 assignee: null,
                 dateResolved: null,
@@ -40,7 +42,7 @@ export const Issues = (state = {
                     return {...issue, comments: issue.comments.concat(
                         {
                             author: action.payload.author,
-                            date: new Date().toISOString(),
+                            date: `${curDate.getMonth() + 1}/${curDate.getDate()}/${curDate.getFullYear()} ${curDate.getHours()}:${curDate.getMinutes()}`,
                             comment: action.payload.comment
                         }
                     )};
